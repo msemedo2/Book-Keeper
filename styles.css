@@ -33,3 +33,63 @@ h1 {
 h1:hover {
 	background-color: rgba(0, 0, 0, 0.8);
 }
+
+/* Bookmarks */
+.container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.item {
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	border-radius: var(--border-radius);
+	padding: 15px 20px 20px;
+	margin: 10px;
+}
+
+.item:hover {
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+a {
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+}
+
+a:link,
+a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	text-decoration: underline;
+}
+.fa-times {
+	float: right;
+	cursor: pointer;
+	z-index: 2;
+}
+
+.name {
+	margin-top: 20px;
+	margin-right: 20px;
+}
+
+.name img {
+	height: 20px;
+	margin-right: 5px;
+	vertical-align: sub;
+}
+
+/* Media Query: Large Smartphone (Vertical) */
+@media screen and (max-width: 600px) {
+	.container {
+		flex-direction: column;
+	}
+}
