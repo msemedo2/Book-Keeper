@@ -1,7 +1,7 @@
 const modal = document.getElementById('modal');
 const modalShow = document.getElementById('show-modal');
 const modalClose = document.getElementById('close-modal');
-const bookmarkFrom = document.getElementById('bookmark-from');
+const bookmarkFrom = document.getElementById('bookmark-form');
 const websiteNameEl = document.getElementById('website-name');
 const websiteUrlEl = document.getElementById('website-url');
 const bookmarksContainer = document.getElementById('bookmarks-container');
@@ -23,3 +23,37 @@ modalClose.addEventListener('click', hideModal);
 document.addEventListener('click', (e) => {
 	e.target === modal ? hideModal() : false;
 });
+
+// Validate Form
+function validate(nameValue, urlValue) {
+	const expression =
+		/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
+	let regex = new RegExp(expression);
+	if (!nameValue || !urlValue) {
+		alert('Please submit values for both fields.');
+		return false;
+	}
+	if (!urlValue.match(regex)) {
+		alert('Please provide a valid web adress');
+		return false;
+	}
+	// Valid
+	return true;
+}
+
+// Handle Data from Form
+function storeBookmark(e) {
+	e.preventDefault();
+	const nameValue = websiteNameEl.value;
+	let urlValue = websiteUrlEl.value;
+	if (!urlValue.includes('http://', 'https://')) {
+		urlValue = `https://${urlValue}`;
+	}
+	console.log(nameValue, urlValue);
+	if (!validate(nameValue, urlValue)) {
+		return false;
+	}
+}
+
+// Event Listener
+bookmarkFrom.addEventListener('submit', storeBookmark);
